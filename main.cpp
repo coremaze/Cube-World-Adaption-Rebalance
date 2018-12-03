@@ -18,10 +18,13 @@ int __thiscall __declspec(noinline) cube__AdaptationWidget__CalculateAdaptationC
         return 0;
     }
 
-    //This formula probably isn't final.
     int effective_level = (weapon->level - 5) + weapon->rarity;
-    int level_difference = local_player->level - effective_level;
-    return (int)(((double)level_difference) * pow(( ((double)local_player->level) / 25), 2));
+    float level_difference = local_player->level - effective_level;
+    float stretch = 1500.0;
+    float limit = 10000.0;
+    float level_scale = (((float)local_player->level)+1.0) / (((float)local_player->level)+10.0);
+    float result = level_scale * ( 1.0 - (stretch/(level_difference+stretch)) ) * limit;
+    return (int)result;
 }
 unsigned int cube__AdaptationWidget__CalculateAdaptationCost_ptr = (unsigned int)&cube__AdaptationWidget__CalculateAdaptationCost;
 
