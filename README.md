@@ -1,4 +1,4 @@
-# Cube-World-Adaptation-Rebalance
+# Cube-World-Adaption-Rebalance
 
 Makes adaptation costs not insane
 
