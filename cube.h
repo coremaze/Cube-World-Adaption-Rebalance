@@ -82,7 +82,7 @@ public:
     }
 };
 
-class AdaptationItem{
+class AdaptionItem{
 public:
     int field_0;
     int field_4;
@@ -442,16 +442,16 @@ namespace cube{
         unsigned int y;
     };
 
-    class AdaptationWidget{
+    class AdaptionWidget{
     public:
         unsigned int vtable;
         uint8_t field_4[360];
         GameController* gamecontroller;
 
-        AdaptationItem* GetWeapon(){
-            typedef AdaptationItem*(__thiscall* cube_AdaptationWidget_GetWeapon_t)(AdaptationWidget*);
-            auto cube_AdaptationWidget_GetWeapon = (cube_AdaptationWidget_GetWeapon_t)(imageBase + 0xF570);
-            return cube_AdaptationWidget_GetWeapon(this);
+        AdaptionItem* GetWeapon(){
+            typedef AdaptionItem*(__thiscall* cube_AdaptionWidget_GetWeapon_t)(AdaptionWidget*);
+            auto cube_AdaptionWidget_GetWeapon = (cube_AdaptionWidget_GetWeapon_t)(imageBase + 0xF570);
+            return cube_AdaptionWidget_GetWeapon(this);
         }
 
 

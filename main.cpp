@@ -5,11 +5,11 @@
 
 unsigned int base;
 
-int __thiscall __declspec(noinline) cube__AdaptationWidget__CalculateAdaptationCost(cube::AdaptationWidget *adaptionwidget){
+int __thiscall __declspec(noinline) cube__AdaptionWidget__CalculateAdaptionCost(cube::AdaptionWidget *adaptionwidget){
     cube::GameController* gamecontroller = adaptionwidget->gamecontroller;
     cube::Creature* local_player = gamecontroller->local_player;
 
-    AdaptationItem* weapon = adaptionwidget->GetWeapon();
+    AdaptionItem* weapon = adaptionwidget->GetWeapon();
     if (!weapon){
         return 0;
     }
@@ -26,13 +26,13 @@ int __thiscall __declspec(noinline) cube__AdaptationWidget__CalculateAdaptationC
     float result = level_scale * ( 1.0 - (stretch/(level_difference+stretch)) ) * limit;
     return (int)result;
 }
-unsigned int cube__AdaptationWidget__CalculateAdaptationCost_ptr = (unsigned int)&cube__AdaptationWidget__CalculateAdaptationCost;
+unsigned int cube__AdaptionWidget__CalculateAdaptionCost_ptr = (unsigned int)&cube__AdaptionWidget__CalculateAdaptionCost;
 
 unsigned int inlinefix_JMP_back;
-unsigned int cube__AdaptationWidget__GetWeapon_ptr;
+unsigned int cube__AdaptionWidget__GetWeapon_ptr;
 void __declspec(naked) inlinefix(){
-    asm("mov ecx, ebx"); //AdaptationWidget
-    asm("call [_cube__AdaptationWidget__CalculateAdaptationCost_ptr]");
+    asm("mov ecx, ebx"); //AdaptionWidget
+    asm("call [_cube__AdaptionWidget__CalculateAdaptionCost_ptr]");
     asm("mov edi, eax"); //cost expected in edi
     asm("jmp [_inlinefix_JMP_back]");
 }
@@ -53,11 +53,11 @@ extern "C" __declspec(dllexport) bool APIENTRY DllMain(HINSTANCE hinstDLL, DWORD
             base = (unsigned int)GetModuleHandle(NULL);
             cube::SetBase(base);
 
-            WriteJMP((BYTE*)(base + 0xF4F0), (BYTE*)cube__AdaptationWidget__CalculateAdaptationCost);
+            WriteJMP((BYTE*)(base + 0xF4F0), (BYTE*)cube__AdaptionWidget__CalculateAdaptionCost);
 
 
             inlinefix_JMP_back = base + 0x10C1A;
-            cube__AdaptationWidget__GetWeapon_ptr =  base + 0xF570;
+            cube__AdaptionWidget__GetWeapon_ptr =  base + 0xF570;
             WriteJMP((BYTE*)(base+0x10B88), (BYTE*)inlinefix);
             break;
 
